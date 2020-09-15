@@ -1,7 +1,6 @@
 """
 Module for config credential of twitter
 """
-
 import twitter
 
 
@@ -16,4 +15,6 @@ def token(token, token_secret, consumer_key, consumer_secret):
     :return:
 
     """
-    return Twitter(auth=OAuth(token, token_secret, consumer_key, consumer_secret))
+    return twitter.Twitter(auth=twitter.OAuth(token, token_secret, consumer_key, consumer_secret))
+
+
