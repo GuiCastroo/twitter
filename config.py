@@ -2,19 +2,14 @@
 Module for config credential of twitter
 """
 import twitter
+import os
+import tweepy
 
 
-def token(token, token_secret, consumer_key, consumer_secret):
-    """
-     Functions for create access for Twitter API.
-
-    :param token:
-    :param token_secret:
-    :param consumer_key:
-    :param consumer_secret:
-    :return:
-
-    """
-    return twitter.Twitter(auth=twitter.OAuth(token, token_secret, consumer_key, consumer_secret))
+def token():
+    """ Functions for create access for Twitter API. """
+    auth = tweepy.OAuthHandler(os.environ['consumer_key'], os.environ['consumer_secret'])
+    auth.set_access_token(os.environ['token'], os.environ['token_secret'])
+    return tweepy.API(auth, wait_on_rate_limit=True)
 
 

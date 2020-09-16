@@ -7,6 +7,10 @@ verify_ssl = true
 
 [packages]
 twitter = "*"
+nltk = "*"
+pandas = "*"
+tweepy = "*"
+scipy = "*"
 
 [requires]
 python_version = "3.8"
