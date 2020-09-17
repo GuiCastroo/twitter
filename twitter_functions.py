@@ -94,17 +94,18 @@ def get_tweets_by_user(user_id=None, user_name=None):
     elif user_id is None:
         user_id = API.get_user(user_name).id
     list_of_tweets = list()
-    for tweet in tweepy.Cursor(API.user_timeline, user_id=user_id).items():
-        format_tweet = {
-            'id': tweet.id,
-            'created_at': tweet.created_at,
-            'text': tweet.text,
-            'like_count': tweet.favorite_count,
-            'retweet_count': tweet.favorite_count,
-            'geo': tweet.geo,
-            'user_id': tweet.user.id,
-        }
-        list_of_tweets.append(format_tweet)
+    for tweet in tweepy.Cursor(API.user_timeline, user_id=user_id, count=1000).pages():
+        for status in tweet:
+            format_tweet = {
+                'id': status.id,
+                'created_at': status.created_at,
+                'text': status.text,
+                'like_count': status.favorite_count,
+                'retweet_count': status.favorite_count,
+                'geo': status.geo,
+                'user_id': status.user.id,
+            }
+            list_of_tweets.append(format_tweet)
     return list_of_tweets
 
 
