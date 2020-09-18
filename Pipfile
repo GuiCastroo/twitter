@@ -11,6 +11,7 @@ nltk = "*"
 pandas = "*"
 tweepy = "*"
 scipy = "*"
+fuzzywuzzy = "*"
 
 [requires]
 python_version = "3.8"
