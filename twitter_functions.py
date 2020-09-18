@@ -79,7 +79,7 @@ def get_followers_from_user(user_name):
         time.sleep(60)
     return list_of_users
 
-
+a = process.extract
 def get_tweets_by_user(user_id=None, user_name=None):
     """
     :param user_id: user id
@@ -88,13 +88,14 @@ def get_tweets_by_user(user_id=None, user_name=None):
     :type user_name: str
     :return: list os followers users
     :rtype: list
+
     """
     if user_id is None and user_name is None:
         raise AttributeError("You need pass or param user_id or user_name for use function")
     elif user_id is None:
         user_id = API.get_user(user_name).id
     list_of_tweets = list()
-    for tweet in tweepy.Cursor(API.user_timeline, user_id=user_id, count=1000).pages():
+    for tweet in tweepy.Cursor(API.user_timeline, user_id=user_id, count=10000).pages():
         for status in tweet:
             format_tweet = {
                 'id': status.id,
@@ -137,3 +138,5 @@ def crate_csv_of_Tweeters_by_followers_of_user(df_name):
     list_of_id = df.user_id.to_list()
     for user_id in list_of_id:
         create_csv_for_tweets_by_user(user_id=user_id)
+
+
